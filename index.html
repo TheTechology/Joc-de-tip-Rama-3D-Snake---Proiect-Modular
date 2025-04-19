@@ -5,7 +5,7 @@
   <!-- SEO Meta Tags -->
   <meta name="description" content="Joc educativ Snake 3D pentru copii – creat de Marian DUMITRU în cadrul Youth Code Academy - Tech for Social Impact. Joacă-te și învață!" />
   <meta name="author" content="Marian DUMITRU" />
-  <meta property="og:title" content="Joc Snake 3D pentru Copii, creat de Marian DUMITRU" />
+  <meta property="og:title" content="Joc Snake 3D pentru Copii" />
   <meta property="og:description" content="Un joc interactiv și educațional de tip Snake 3D, creat pentru copii și tineri de Marian DUMITRU – Youth Code Academy." />
   <meta property="og:image" content="https://github.com/TheTechology/Joc-de-tip-Rama-3D-Snake---Proiect-Modular/blob/main/Marian%20DUMITRU.png?raw=true" />
   <meta property="og:type" content="website" />
@@ -19,7 +19,7 @@
   <title id="pageTitle">🐍 Jocul Snake pentru Copii</title>
   <style>
     body {
-      font-family: 'Segoe UI', 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Verdana', sans-serif;
       text-align: center;
       background: linear-gradient(to bottom right, #f9f7d9, #c1f0f6);
       margin: 0;
@@ -40,7 +40,7 @@
       color: #2c3e50;
     }
     p {
-      font-size: 1.1em;
+      font-size: 1.2em;
       color: #333;
       margin: 10px 20px;
     }
@@ -52,8 +52,8 @@
       margin-top: 20px;
     }
     .btn {
-      font-size: 1.2em;
-      padding: 10px 20px;
+      font-size: 1.4em;
+      padding: 12px 24px;
       background-color: #ff6f61;
       color: white;
       border: none;
@@ -66,9 +66,18 @@
       background-color: #e5534b;
     }
     @media (max-width: 480px) {
+      body {
+        font-family: 'Arial Rounded MT Bold', sans-serif;
+      }
       canvas {
         width: 90vw;
         height: 90vw;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      p {
+        font-size: 1em;
       }
     }
   </style>
@@ -124,6 +133,13 @@
     }
 
     function draw() {
+      // crește nivelul la fiecare 5 puncte
+      if (score > 0 && score % 5 === 0) {
+        level = Math.floor(score / 5) + 1;
+        clearInterval(game);
+        gameSpeed = Math.max(100, 300 - (level - 1) * 20); // viteza minimă: 100ms
+        game = setInterval(draw, gameSpeed);
+      }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < snake.length; i++) {
@@ -178,7 +194,9 @@
       return array.some(segment => segment.x === head.x && segment.y === head.y);
     }
 
-    game = setInterval(draw, 150);
+    let gameSpeed = 300;
+    let level = 1;
+    let game = setInterval(draw, gameSpeed);
       // Titlu animat în tab
     let baseTitle = "🐍 Jocul Snake pentru Copii";
     let titleStep = 0;
