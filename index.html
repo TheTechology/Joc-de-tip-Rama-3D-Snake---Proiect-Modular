@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
+  <link rel="icon" type="image/png" href="https://github.com/TheTechology/Joc-de-tip-Rama-3D-Snake---Proiect-Modular/blob/main/Marian%20DUMITRU.png?raw=true" />
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Joc educativ Snake 3D pentru copii – creat de Marian DUMITRU în cadrul Youth Code Academy - Tech for Social Impact. Joacă-te și învață!" />
+  <meta name="author" content="Marian DUMITRU" />
+  <meta property="og:title" content="Joc Snake 3D pentru Copii" />
+  <meta property="og:description" content="Un joc interactiv și educațional de tip Snake 3D, creat pentru copii și tineri de Marian DUMITRU – Youth Code Academy." />
+  <meta property="og:image" content="https://github.com/TheTechology/Joc-de-tip-Rama-3D-Snake---Proiect-Modular/blob/main/Marian%20DUMITRU.png?raw=true" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-website.netlify.app" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Joc Snake 3D pentru Copii" />
+  <meta name="twitter:description" content="Joacă-te și învață cu acest joc Snake creat special pentru copii și tineri." />
+  <meta name="twitter:image" content="https://github.com/TheTechology/Joc-de-tip-Rama-3D-Snake---Proiect-Modular/blob/main/Marian%20DUMITRU.png?raw=true" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>🐍 Jocul Snake pentru Copii</title>
+  <title id="pageTitle">🐍 Jocul Snake pentru Copii</title>
   <style>
     body {
       font-family: 'Segoe UI', 'Comic Sans MS', cursive, sans-serif;
@@ -166,6 +179,38 @@
     }
 
     game = setInterval(draw, 150);
-  </script>
+      // Titlu animat în tab
+    let baseTitle = "🐍 Jocul Snake pentru Copii";
+    let titleStep = 0;
+    setInterval(() => {
+      const dots = ".".repeat(titleStep % 4);
+      document.title = `${baseTitle}${dots}`;
+      titleStep++;
+    }, 1000);
+
+    // Bară de progres simulată la început (loading)
+    const progress = document.createElement('div');
+    progress.style.position = 'fixed';
+    progress.style.top = '0';
+    progress.style.left = '0';
+    progress.style.width = '0%';
+    progress.style.height = '4px';
+    progress.style.backgroundColor = '#3498db';
+    progress.style.zIndex = '9999';
+    progress.style.transition = 'width 0.5s';
+    document.body.appendChild(progress);
+
+    let width = 0;
+    const loadingBar = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(loadingBar);
+        progress.style.display = 'none';
+      } else {
+        width += 10;
+        progress.style.width = width + '%';
+      }
+    }, 100);
+
+</script>
 </body>
 </html>
