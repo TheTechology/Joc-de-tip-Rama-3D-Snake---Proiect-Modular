@@ -214,7 +214,8 @@
 
     let gameSpeed = 300;
     let level = 1;
-    let game = setInterval(draw, gameSpeed);
+    // Inițial nu rulăm încă jocul
+let game = null;
 
     function updateLevel() {
       const newLevel = Math.floor(score / 5) + 1;
@@ -256,6 +257,11 @@
         progress.style.width = width + '%';
       }
     }, 100);
+
+  // Pornim jocul după ce totul e încărcat complet
+  window.onload = () => {
+    game = setInterval(draw, gameSpeed);
+  };
 
 </script>
 </body>
