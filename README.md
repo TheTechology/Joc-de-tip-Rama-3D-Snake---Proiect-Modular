@@ -1,24 +1,66 @@
-# 🐍 Rama 3D - Joc de Șarpe în Spațiu 3D
+# 🐍 Rama 3D - Joc de Șarpe 3D / 3D Snake Game
 
-[![Python](https://img.shields.io/badge/Python-3.6%2B-blue)](https://www.python.org/)
-[![Pygame](https://img.shields.io/badge/Pygame-2.0%2B-green)](https://www.pygame.org/)
-[![OpenGL](https://img.shields.io/badge/OpenGL-3.1%2B-orange)](https://www.opengl.org/)
+![Banner](https://via.placeholder.com/1200x600.png?text=Rama+3D+Banner+Placeholder)
 
-Un joc clasic de Șarpe reinventat în spațiu 3D cu efecte vizuale impresionante și controale intuitive.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)](https://python.org)
+[![Pygame](https://img.shields.io/badge/Pygame-2.1+-green?logo=pygame)](https://pygame.org)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-![Demo gameplay](https://via.placeholder.com/800x400.png?text=Rama+3D+Gameplay+Demo)
+**🇷🇴 Joc clasic de Șarpe în 3D cu grafică modernă**  
+**🇬🇧 Classic Snake game reimagined in 3D with modern graphics**
 
-## ✨ Caracteristici
+## 📌 Cuprins / Contents
+- [Caracteristici](#-caracteristici-features)
+- [Instalare](#-instalare-installation)
+- [Utilizare](#-utilizare-usage)
+- [Galerie](#-galerie-gallery)
+- [Dezvoltare](#-dezvoltare-development)
+- [Licență](#-licență-license)
 
-- 🎮 **Controale 3D** - Navighează în toate direcțiile
-- 🌈 **Culori vii** - Paletă vibrantă cu efecte 3D
-- 🏆 **Sistem de scor** - Concurează pentru recordul personal
-- 🌀 **Animții fluide** - Cuburi rotative și mișcare naturală
-- 🖱️ **Control cameră** - Rotire și zoom cu mouse-ul
+## ✨ Caracteristici / Features
 
-## 🛠️ Instalare
+**🇷🇴**  
+✔️ Grafică 3D cu iluminare și culori vibrante  
+✔️ Sistem de cameră rotativă controlată cu mouse-ul  
+✔️ Mecanici de joc clasice îmbunătățite  
+✔️ Coliziuni și sistem de scor  
+✔️ Personalizare ușoară prin fișierul de configurare  
 
-1. Clonează repository-ul:
+**🇬🇧**  
+✔️ 3D graphics with lighting and vibrant colors  
+✔️ Rotatable camera controlled with mouse  
+✔️ Enhanced classic gameplay mechanics  
+✔️ Collision detection and scoring system  
+✔️ Easy customization via config file  
+
+## 🛠️ Instalare / Installation
+
 ```bash
+# Clonează repository-ul / Clone the repository
 git clone https://github.com/username/rama_3d.git
 cd rama_3d
+
+# Instalează dependențele / Install dependencies
+pip install -r requirements.txt
+
+Dependințe necesare / Required dependencies:
+
+Python 3.8+
+
+Pygame 2.1+
+
+PyOpenGL
+
+NumPy (optional)
+
+🎮 Utilizare / Usage
+bash
+python main.py
+Controale / Controls:
+
+Tastă / Key	Acțiune / Action
+← ↑ → ↓	Mișcare 2D / 2D movement
+W/A/S/D	Mișcare 3D / 3D movement
+Mouse Drag	Rotire cameră / Rotate camera
+Mouse Wheel	Zoom
+ESC	Ieșire / Quit
