@@ -5,7 +5,7 @@
   <!-- SEO Meta Tags -->
   <meta name="description" content="Joc educativ Snake 3D pentru copii – creat de Marian DUMITRU în cadrul Youth Code Academy - Tech for Social Impact. Joacă-te și învață!" />
   <meta name="author" content="Marian DUMITRU" />
-  <meta property="og:title" content="Joc Snake 3D pentru Copii" />
+  <meta property="og:title" content="Joc Snake 3D pentru Copii – creat de Marian DUMITRU" />
   <meta property="og:description" content="Un joc interactiv și educațional de tip Snake 3D, creat pentru copii și tineri de Marian DUMITRU – Youth Code Academy." />
   <meta property="og:image" content="https://github.com/TheTechology/Joc-de-tip-Rama-3D-Snake---Proiect-Modular/blob/main/Marian%20DUMITRU.png?raw=true" />
   <meta property="og:type" content="website" />
@@ -133,13 +133,8 @@
     }
 
     function draw() {
-      // crește nivelul la fiecare 5 puncte
-      if (score > 0 && score % 5 === 0) {
-        level = Math.floor(score / 5) + 1;
-        clearInterval(game);
-        gameSpeed = Math.max(100, 300 - (level - 1) * 20); // viteza minimă: 100ms
-        game = setInterval(draw, gameSpeed);
-      }
+      // actualizăm scorul și verificăm nivelul în afara draw()
+      
       // fundalul ramei
       ctx.fillStyle = '#fff8dc';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -187,6 +182,7 @@
       if (snakeX === food.x && snakeY === food.y) {
         score++;
         document.getElementById('score').textContent = score;
+        updateLevel();
         food = generateFood();
       } else {
         snake.pop();
@@ -219,6 +215,16 @@
     let gameSpeed = 300;
     let level = 1;
     let game = setInterval(draw, gameSpeed);
+
+    function updateLevel() {
+      const newLevel = Math.floor(score / 5) + 1;
+      if (newLevel !== level) {
+        level = newLevel;
+        clearInterval(game);
+        gameSpeed = Math.max(100, 300 - (level - 1) * 20);
+        game = setInterval(draw, gameSpeed);
+      }
+    }
       // Titlu animat în tab
     let baseTitle = "🐍 Jocul Snake pentru Copii";
     let titleStep = 0;
