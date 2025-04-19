@@ -64,3 +64,40 @@ W/A/S/D	Mișcare 3D / 3D movement
 Mouse Drag	Rotire cameră / Rotate camera
 Mouse Wheel	Zoom
 ESC	Ieșire / Quit
+
+💻 Dezvoltare / Development
+Structura proiectului / Project structure:
+
+rama_3d/
+├── main.py          # Punct de intrare / Entry point
+├── game/            # Logică joc / Game logic
+│   ├── core.py      # Motor joc / Game engine
+│   ├── objects/     # Obiecte 3D / 3D objects
+│   └── utils.py     # Utilitare / Utilities
+├── assets/          # Resurse / Assets
+├── config.py        # Configurații / Settings
+└── requirements.txt # Dependințe / Dependencies
+Pentru contribuții:
+🇷🇴
+
+Fork la repository
+
+Creează un branch nou (git checkout -b feature/nume-feature)
+
+Comite modificările
+
+Deschide un Pull Request
+
+🇬🇧
+
+Fork the repository
+
+Create new branch (git checkout -b feature/feature-name)
+
+Commit changes
+
+Open Pull Request
+
+📜 Licență / License
+Acest proiect este licențiat sub MIT License - vezi LICENSE pentru detalii.
+This project is licensed under MIT License - see LICENSE for details.
