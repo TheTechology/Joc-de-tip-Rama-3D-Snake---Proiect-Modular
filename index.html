@@ -140,7 +140,29 @@
         gameSpeed = Math.max(100, 300 - (level - 1) * 20); // viteza minimă: 100ms
         game = setInterval(draw, gameSpeed);
       }
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // fundalul ramei
+      ctx.fillStyle = '#fff8dc';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // rama 3D modernă
+      ctx.strokeStyle = '#333';
+      ctx.lineWidth = 8;
+      ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+      // colțuri 3D decorative
+      ctx.fillStyle = '#ff6f61';
+      const dotSize = 10;
+      for (let x = 0; x < canvas.width; x += box) {
+        ctx.fillRect(x, 0, 2, dotSize);
+        ctx.fillRect(x, canvas.height - 2, 2, dotSize);
+      }
+      for (let y = 0; y < canvas.height; y += box) {
+        ctx.fillRect(0, y, dotSize, 2);
+        ctx.fillRect(canvas.width - 2, y, dotSize, 2);
+      }
+
+      // curățăm interiorul
+      ctx.clearRect(8, 8, canvas.width - 16, canvas.height - 16);
 
       for (let i = 0; i < snake.length; i++) {
         ctx.fillStyle = i === 0 ? '#3498db' : '#9b59b6';
