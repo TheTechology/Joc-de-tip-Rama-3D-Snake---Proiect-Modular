@@ -3,33 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Snake Game</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>🐍 Jocul Snake pentru Copii</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
-      background-color: #f0f0f0;
+      background: linear-gradient(to bottom right, #f9f7d9, #c1f0f6);
+      margin: 0;
+      padding: 0;
     }
     canvas {
-      background-color: #000;
+      background: #fff8dc;
       display: block;
-      margin: 0 auto;
-      border: 2px solid #333;
+      margin: 20px auto;
+      border: 5px dashed #ff6f61;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
     h1 {
       margin-top: 30px;
+      font-size: 2.5em;
+      color: #2c3e50;
     }
     p {
-      font-size: 18px;
+      font-size: 1.2em;
       color: #333;
     }
   </style>
 </head>
 <body>
-  <h1>🐍 Snake Game</h1>
+  <h1>🐍 Jocul Snake pentru Copii</h1>
   <canvas id="gameCanvas" width="400" height="400"></canvas>
-  <p>Scor: <span id="score">0</span></p>
+  <p style="font-size: 1em; color: #555;">Creat de <strong>Marian DUMITRU</strong> — <em>Youth Code Academy - Tech for Social Impact</em></p>
+  <p>🍎 Scor: <span id="score">0</span></p>
   <script>
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
@@ -39,14 +45,19 @@
     let snake = [];
     snake[0] = { x: 9 * box, y: 10 * box };
 
-    let food = {
-      x: Math.floor(Math.random() * 19 + 1) * box,
-      y: Math.floor(Math.random() * 19 + 1) * box
-    };
-
+    let food = generateFood();
     let direction;
+    let game;
 
     document.addEventListener('keydown', changeDirection);
+
+    function generateFood() {
+      return {
+        x: Math.floor(Math.random() * 19 + 1) * box,
+        y: Math.floor(Math.random() * 19 + 1) * box,
+        color: ['#e74c3c', '#f1c40f', '#2ecc71'][Math.floor(Math.random() * 3)]
+      };
+    }
 
     function changeDirection(event) {
       if (event.key === 'ArrowLeft' && direction !== 'RIGHT') direction = 'LEFT';
@@ -58,15 +69,19 @@
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // desenăm șarpele
       for (let i = 0; i < snake.length; i++) {
-        ctx.fillStyle = i === 0 ? 'lime' : 'green';
+        ctx.fillStyle = i === 0 ? '#3498db' : '#9b59b6';
         ctx.fillRect(snake[i].x, snake[i].y, box, box);
-        ctx.strokeStyle = 'darkgreen';
+        ctx.strokeStyle = '#fff';
         ctx.strokeRect(snake[i].x, snake[i].y, box, box);
       }
 
-      ctx.fillStyle = 'red';
-      ctx.fillRect(food.x, food.y, box, box);
+      // desenăm mâncarea
+      ctx.fillStyle = food.color;
+      ctx.beginPath();
+      ctx.arc(food.x + box / 2, food.y + box / 2, box / 2, 0, 2 * Math.PI);
+      ctx.fill();
 
       let snakeX = snake[0].x;
       let snakeY = snake[0].y;
@@ -76,13 +91,11 @@
       if (direction === 'UP') snakeY -= box;
       if (direction === 'DOWN') snakeY += box;
 
+      // dacă șarpele mănâncă mâncarea
       if (snakeX === food.x && snakeY === food.y) {
         score++;
         document.getElementById('score').textContent = score;
-        food = {
-          x: Math.floor(Math.random() * 19 + 1) * box,
-          y: Math.floor(Math.random() * 19 + 1) * box
-        };
+        food = generateFood();
       } else {
         snake.pop();
       }
@@ -97,22 +110,21 @@
         collision(newHead, snake)
       ) {
         clearInterval(game);
-        alert('Game Over! Scor final: ' + score);
+        setTimeout(() => {
+          if (confirm('Sfârșit de joc! Scor final: ' + score + '\nVrei să reîncepi?')) {
+            location.reload();
+          }
+        }, 100);
       }
 
       snake.unshift(newHead);
     }
 
     function collision(head, array) {
-      for (let i = 0; i < array.length; i++) {
-        if (head.x === array[i].x && head.y === array[i].y) {
-          return true;
-        }
-      }
-      return false;
+      return array.some(segment => segment.x === head.x && segment.y === head.y);
     }
 
-    let game = setInterval(draw, 100);
+    game = setInterval(draw, 150);
   </script>
 </body>
 </html>
