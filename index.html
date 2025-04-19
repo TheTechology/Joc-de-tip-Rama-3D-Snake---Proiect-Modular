@@ -85,6 +85,7 @@
 <body>
   <h1>🐍 Jocul Snake pentru Copii</h1>
   <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <p id="levelDisplay" style="font-size: 1em; color: #2c3e50;">📊 Nivel: 1</p>
   <p style="font-size: 1em; color: #555;">Creat de <strong>Marian DUMITRU</strong> — <em>Youth Code Academy - Tech for Social Impact</em></p>
   <p>🍎 Scor: <span id="score">0</span></p>
 
@@ -157,7 +158,7 @@
       }
 
       // curățăm interiorul
-      ctx.clearRect(8, 8, canvas.width - 16, canvas.height - 16);
+      // ctx.clearRect(...) eliminat pentru a nu șterge tot jocul
 
       for (let i = 0; i < snake.length; i++) {
         ctx.fillStyle = i === 0 ? '#3498db' : '#9b59b6';
@@ -218,6 +219,7 @@
 let game = null;
 
     function updateLevel() {
+      document.getElementById('levelDisplay').textContent = `📊 Nivel: ${level}`;
       const newLevel = Math.floor(score / 5) + 1;
       if (newLevel !== level) {
         level = newLevel;
